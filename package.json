@@ -24,18 +24,13 @@
   "engines": {
     "node": ">=6.5.0"
   },
-  "dependencies": {
-    "marked": "^0.3.6",
-    "reshape-parser": "^0.2.1"
-  },
   "devDependencies": {
     "echint": "^4.0.1",
     "echint-config-dev": "1.0.0",
     "eslint": "^3.15.0",
     "eslint-config-dev": "1.0.0",
     "pre-commit": "^1.2.2",
-    "reshape": "^0.4.1",
-    "sugarml": "^0.5.0"
+    "reshape": "^0.4.1"
   },
   "echint": {
     "extends": "dev"
