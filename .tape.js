@@ -1,7 +1,6 @@
 // tooling
 const reshape = require('reshape');
 const plugin  = require('.');
-const sugarml = require('sugarml');
 
 // error symbols
 const name = 'reshape-hfill';

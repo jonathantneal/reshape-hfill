@@ -6,7 +6,7 @@
 [![Changelog][log-img]][log-url]
 [![Gitter Chat][git-img]][git-url]
 
-[Reshape hfill] lets you easily use [contextual headings] in HTML, like the [proposed `<h>` element].
+[Reshape hfill] lets you easily use contextual headings in HTML, like the [proposed `<h>` element].
 
 ```html
 <!-- before -->
