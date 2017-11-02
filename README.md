@@ -3,10 +3,10 @@
 [![NPM Version][npm-img]][npm-url]
 [![Build Status][cli-img]][cli-url]
 [![Licensing][lic-img]][lic-url]
-[![Changelog][log-img]][log-url]
 [![Gitter Chat][git-img]][git-url]
 
-[Reshape hfill] lets you easily use contextual headings in HTML, like the [proposed `<h>` element].
+[Reshape hfill] lets you easily use contextual headings in HTML, like the
+[proposed `<h>` element].
 
 ```html
 <!-- before -->
@@ -55,28 +55,53 @@ npm install reshape reshape-hfill --save-dev
 Use [Reshape hfill] as a plugin:
 
 ```js
+import reshape from 'reshape';
+import reshapeHfill from 'reshape-hfill';
+
 reshape({
-	plugins: [
-		plugin(/* options */)
-	]
+  plugins: [
+    reshapeHfill(/* options */)
+  ]
 }).process(YOUR_HTML);
 ```
 
 ## Options
 
-#### headings
+### headings
 
 Type: `Object`  
 Default: `{ "h": [ "h", "h1", "h2", "h3", "h4", "h5", "h6" ] }`
 
-The hash of contextual heading tags being transformed into by its array of tags.
+A list of heading tags that should be created from the array of tags.
 
-#### sections
+**Example**: Only transform `<h>` tags:
+
+```json
+{
+  "headings": {
+    "h": [
+      "h"
+    ]
+  }
+}
+```
+
+### sections
 
 Type: `Array`  
 Default: `[ "article", "aside", "nav", "section" ]`
 
-The list of sectioning content tags used to calculate the hierarchical level of the heading.
+A list of sectioning content tags used to calculate the hierarchical level of
+heading tags.
+
+**Example**: Only increase the hierarchical level on `<article>`, `<aside>`,
+and `<section>` tags:
+
+```json
+{
+  "sections": [ "article", "aside", "section" ]
+}
+```
 
 [npm-url]: https://www.npmjs.com/package/reshape-hfill
 [npm-img]: https://img.shields.io/npm/v/reshape-hfill.svg
@@ -84,8 +109,6 @@ The list of sectioning content tags used to calculate the hierarchical level of 
 [cli-img]: https://img.shields.io/travis/jonathantneal/reshape-hfill.svg
 [lic-url]: LICENSE.md
 [lic-img]: https://img.shields.io/npm/l/reshape-hfill.svg
-[log-url]: CHANGELOG.md
-[log-img]: https://img.shields.io/badge/changelog-md-blue.svg
 [git-url]: https://gitter.im/reshape/reshape
 [git-img]: https://img.shields.io/badge/chat-gitter-blue.svg
 
