@@ -10,6 +10,7 @@ const fail = '\x1b[31m\✖\x1b[0m';
 // test 1
 const test1 = require('./test/basic');
 const test2 = require('./test/hn');
+const test3 = require('./test/compat');
 
 Promise.all([
 	reshape({
@@ -25,6 +26,17 @@ Promise.all([
 		]
 	}).process(test2.source).then(
 		tester(test2.expect)
+	),
+	reshape({
+		plugins: [
+			plugin({
+				headings: {
+					'1-6': [ 'h', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6' ]
+				}
+			})
+		]
+	}).process(test3.source).then(
+		tester(test3.expect)
 	)
 ]).then(
 	()      => console.log(`${ pass } ${ name }`) || process.exit(0),

@@ -42,6 +42,23 @@
   <h role="heading" aria-level="2">Heading</h>
   <p>...</p>
 </section>
+
+<!-- or, alternatively -->
+<h1>Heading</h1>
+<p>...</p>
+<section>
+  <h2>Heading</h2>
+  <p>...</p>
+  <section>
+    <h3>X Heading</h3>
+    <p>...</p>
+  </section>
+</section>
+<section>
+  <p>...</p>
+  <h2>Heading</h2>
+  <p>...</p>
+</section>
 ```
 
 ## Usage
@@ -72,7 +89,9 @@ reshape({
 Type: `Object`  
 Default: `{ "h": [ "h", "h1", "h2", "h3", "h4", "h5", "h6" ] }`
 
-A list of heading tags that should be created from the array of tags.
+A list of heading tags that should be created from the array of tags,
+alternatively transforming them into their calculated hierarchical level by a
+numerical range.
 
 **Example**: Only transform `<h>` tags:
 
@@ -82,6 +101,16 @@ A list of heading tags that should be created from the array of tags.
     "h": [
       "h"
     ]
+  }
+}
+```
+
+**Example**: Transform many tags into their calculated hierarchical level (1-6):
+
+```json
+{
+  "headings": {
+    "1-6": [ "h", "h1", "h2", "h3", "h4", "h5", "h6" ]
   }
 }
 ```

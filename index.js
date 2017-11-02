@@ -4,6 +4,8 @@ const defaults = {
 	sections: [ 'article', 'aside', 'nav', 'section' ]
 };
 
+const tagRangeMatch = /^(\d+)-(\d+)$/;
+
 // plugin
 module.exports = ({ headings = defaults.headings, sections = defaults.sections } = {}) => {
 	return ast => {
@@ -26,16 +28,27 @@ module.exports = ({ headings = defaults.headings, sections = defaults.sections }
 				const includes = headings[name].includes(node.name.toLowerCase());
 
 				if (includes) {
-					// update element name
-					node.name = name;
+					if (tagRangeMatch.test(name)) {
+						// range of hierarchical tags
+						const [ , min, max ] = name.match(tagRangeMatch);
 
-					// update element attrs
-					const attrs = node.attrs || (node.attrs = {});
+						// range-limited level
+						const tagLevel = Math.max(Math.min(level, max), min);
 
-					Object.assign(attrs, {
-						role: [ { type: 'text', content: 'heading' } ],
-						'aria-level': [ { type: 'text', content: String(level) } ]
-					});
+						// update element name with range-limited level
+						node.name = `h${tagLevel}`;
+					} else {
+						// update element name
+						node.name = name;
+
+						// update element attrs
+						const attrs = node.attrs || (node.attrs = {});
+
+						Object.assign(attrs, {
+							role: [ { type: 'text', content: 'heading' } ],
+							'aria-level': [ { type: 'text', content: String(level) } ]
+						});
+					}
 				}
 
 				return includes;
